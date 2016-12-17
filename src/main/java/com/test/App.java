@@ -13,8 +13,11 @@ import com.test.model.ActivityType;
  */
 public class App 
 {
+	public static String[] ARGS;
     public static void main( String[] args )
     {
+    	ARGS = args;
+    			
         //System.out.println( "Hello World!" );
 		ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
 		
@@ -35,5 +38,10 @@ public class App
 		//close resources
 		context.close();	
 	
+		int i = 0;
+		for (String s:ARGS){
+			System.out.println(""+i+"th value = "+ s);
+		}
+		System.out.println("env = " + System.getProperty("env"));
     }
 }
