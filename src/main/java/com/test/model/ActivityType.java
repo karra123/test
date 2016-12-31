@@ -31,10 +31,10 @@ public class ActivityType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	@Override
-	public String toString(){
-		return "activitytype: id="+id+", name="+name;
+	public String toString() {
+		return "ActivityType [id=" + id + ", name=" + name + "]";
 	}
+	
 
 }
