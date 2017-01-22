@@ -2,6 +2,9 @@ package com.test;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -34,8 +37,21 @@ public class App
 		
 		ActivityTypeDao activityTypeDao = context.getBean(ActivityTypeDao.class);
 		List<ActivityType> list = activityTypeDao.list();
+		list.forEach(i -> System.out.println("Activity Type Item = " + i));
 
-		try {
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+		Date dateBefore = new Date();
+		System.out.println("Before Insert" + dateFormat.format(dateBefore));
+		
+		int numOfRecords = 100000;
+		for (int i = 0 ; i<numOfRecords ; i++){
+			ActivityType a = new ActivityType();
+			a.setName("Running_" + i);
+			activityTypeDao.save(a);
+		}
+		Date dateAfter = new Date();
+		System.out.println("After Insert " + dateFormat.format(dateAfter));
+/*		try {
 			MessageQueue mq = new MessageQueue();
 			WriterThread master = new WriterThread(mq,list);
 			WorkerThread wt1 = new WorkerThread(mq,1);
@@ -59,7 +75,7 @@ public class App
 		catch (Exception e) {
 			
 		}
-		
+*/		
 /*		ActivityType at = new ActivityType();
 		at.setName("Running");
 		

@@ -10,7 +10,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
 	<context:property-placeholder location="config_${env}.properties"/>
-
+  	
+  	<context:component-scan base-package="com.test" />
+  	<context:component-scan base-package="com.test.dao" />
+  	<context:component-scan base-package="com.test.model" />
+  
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<property name="driverClassName" value="${db.driver}" />
@@ -23,21 +27,26 @@
 <bean id="hibernate5AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="annotatedClasses">
+		<property name="packagesToScan" value="com.test.model" ></property>
+		<!--<property name="annotatedClasses">
 			<list>
 				<value>com.test.model.ActivityType</value>
 			</list>
-		</property>
+		</property>-->
 		<property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.current_session_context_class">thread</prop>
+				<!--<prop key="hibernate.current_session_context_class">thread</prop>-->
 				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>
 	</bean>
+	<tx:annotation-driven transaction-manager="transactionManager"/>
+	<bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory"></property>
+	</bean>
 	
 	<bean id="activityTypeDao" class="com.test.dao.ActivityTypeDaoImpl">
-		<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />
+		<!--<property name="sessionFactory" ref="hibernate5AnnotatedSessionFactory" />-->
 	</bean>
 </beans>	

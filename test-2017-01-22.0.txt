@@ -1,0 +1,2 @@
+10:50:27.345 [main] DEBUG org.jboss.logging: Logging Provider: org.jboss.logging.Slf4jLoggerProvider
+10:58:05.995 [main] DEBUG org.jboss.logging: Logging Provider: org.jboss.logging.Slf4jLoggerProvider

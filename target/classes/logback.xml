@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="ROLLING" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+      <fileNamePattern>test-%d{yyyy-MM-dd}.%i.txt</fileNamePattern>
+       <maxFileSize>100MB</maxFileSize>    
+       <maxHistory>10</maxHistory>
+       <totalSizeCap>1GB</totalSizeCap>
+    </rollingPolicy>
+    <encoder>
+      <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36}: %msg%n</pattern>
+    </encoder>
+  </appender>
+
+  <logger name="org.hibernate" level="error" />
+  <root level="debug">
+    <appender-ref ref="ROLLING" />
+  </root>
+
+</configuration>

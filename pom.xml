@@ -35,12 +35,27 @@
 		<!-- Spring and Transactions -->
 		<dependency>
 			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${spring-framework.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
 			<version>${spring-framework.version}</version>
 		</dependency>
 
@@ -135,7 +150,21 @@
         <artifactId>maven-resources-plugin</artifactId>
         <version>2.7</version>
       </plugin>
-      <plugin>
+ <plugin> 
+    <artifactId>maven-dependency-plugin</artifactId> 
+    <executions> 
+      <execution> 
+        <phase>install</phase> 
+          <goals> 
+            <goal>copy-dependencies</goal> 
+          </goals> 
+          <configuration> 
+             <outputDirectory>${project.build.directory}/lib</outputDirectory> 
+          </configuration> 
+        </execution> 
+      </executions> 
+    </plugin>
+          <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
         <version>2.4.3</version>

@@ -1,0 +1,7 @@
+com\test\App.class
+com\test\model\ActivityType.class
+com\test\process\WorkerThread.class
+com\test\process\WriterThread.class
+com\test\dao\ActivityTypeDao.class
+com\test\dao\ActivityTypeDaoImpl.class
+com\test\process\MessageQueue.class
